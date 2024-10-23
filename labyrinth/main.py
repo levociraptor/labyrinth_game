@@ -3,9 +3,9 @@ from pygame.sprite import Group, spritecollide
 
 from random import randint
 
-from game_object import GameObject
-from settings import Speed_setings
-from wall_calculator import calculate_walls_coord
+from labyrinth.game_objects import GameObject
+from labyrinth.settings import Speed_setings
+from labyrinth.wall_calculator import calculate_walls_coord
 
 
 class Player(GameObject):
@@ -33,7 +33,7 @@ class Slime(GameObject):
             return 1 * slime_speed, 0
 
 
-def compose_context(screen) -> dict[str, GameObject]:
+def compose_context(screen: Pygame.display) -> dict[str, GameObject]:
     list_of_coords = calculate_walls_coord(screen.get_height(),
                                            screen.get_width(),
                                            Wall.width,
@@ -48,8 +48,8 @@ def compose_context(screen) -> dict[str, GameObject]:
 
     for i in range(1, 4):
         while True:
-            slime_x = randint(61,1219)
-            slime_y = randint(61,659)
+            slime_x = randint(61, 1219)
+            slime_y = randint(61, 659)
             slime_rect = pygame.Rect(slime_x, slime_y, Slime.width, Slime.height)
 
             temp_sprite = pygame.sprite.Sprite()

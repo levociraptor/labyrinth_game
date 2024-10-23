@@ -1,7 +1,13 @@
 from random import randint
 
 
-def calculate_walls_coord(screen_height, screen_width, wall_width, wall_height) -> list[tuple[int, int]]:
+def calculate_walls_coord(
+            screen_height: int,
+            screen_width: int,
+            wall_width: int,
+            wall_height: int
+        ) -> list[tuple[int, int]]:
+
     amount_of_horizontal_walls = screen_width // wall_width
     amount_of_vertical_walls = screen_height // wall_height - 2
     list_of_coords = []
@@ -19,7 +25,7 @@ def calculate_walls_coord(screen_height, screen_width, wall_width, wall_height) 
         ])
 
     x_coord = (wall_width * 2) + 2
-    while True:
+    while x_coord < screen_width:
         if x_coord == 610:
             x_coord += (wall_width * 2) + 2
             continue
@@ -30,7 +36,5 @@ def calculate_walls_coord(screen_height, screen_width, wall_width, wall_height) 
         list_of_coords.extend(vertical_walls)
 
         x_coord += (wall_width * 2) + 2
-        if x_coord >= 1280:
-            break
 
     return list_of_coords
