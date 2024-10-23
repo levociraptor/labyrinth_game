@@ -1,4 +1,5 @@
 import os
+from random import randint
 
 from pygame import Surface
 from pygame.image import load
@@ -26,3 +27,28 @@ class GameObject(Sprite):
 
     def is_collided_with(self, another_object: "GameObject") -> bool:
         return self.rect.colliderect(another_object.rect)
+
+
+class Player(GameObject):
+    sprite_filename = 'player'
+
+
+class Wall(GameObject):
+    sprite_filename = 'wall'
+    width = 60
+    height = 60
+
+
+class Slime(GameObject):
+    sprite_filename = 'slime_1'
+
+    def direction_choicer(self, slime_speed: int) -> tuple[int, int]:
+        direction = randint(1, 4)
+        if direction == 1:
+            return 0, -1 * slime_speed
+        elif direction == 2:
+            return 0, 1 * slime_speed
+        elif direction == 3:
+            return -1 * slime_speed, 0
+        else:
+            return 1 * slime_speed, 0
